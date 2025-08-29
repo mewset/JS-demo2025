@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-demo 2025</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            overflow: hidden;
+            cursor: none;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+        
+        #demo-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: radial-gradient(circle at center, #001122, #000000);
+            filter: contrast(1.2) brightness(1.1);
+        }
+        
+        #main-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+        
+        /* CRT Screen overlay */
+        #demo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 0, 0.03) 2px,
+                rgba(0, 255, 0, 0.03) 4px
+            );
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        /* CRT Curvature effect */
+        #demo-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                rgba(0,0,0,0) 60%, 
+                rgba(0,0,0,0.3) 100%);
+            z-index: 9;
+            pointer-events: none;
+        }
+        
+        #vertical-scroller {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            width: 200px;
+            height: 100vh;
+            z-index: 2;
+            color: #00ff00;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 
+                0 0 5px #00ff00,
+                0 0 10px #00ff00,
+                0 0 15px #00ff00;
+            letter-spacing: 1px;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        #vertical-scroller-text {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            animation: verticalScroll 60s linear infinite;
+            line-height: 1.4;
+        }
+        
+        @keyframes verticalScroll {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-100%); }
+        }
+        
+        #title {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff0080;
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 3;
+            text-shadow: 
+                0 0 5px #ff0080,
+                0 0 10px #ff0080,
+                0 0 15px #ff0080,
+                0 0 20px #ff0080;
+            animation: pulse 2s ease-in-out infinite alternate;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes pulse {
+            0% { 
+                opacity: 0.8;
+                filter: brightness(0.8);
+            }
+            100% { 
+                opacity: 1;
+                filter: brightness(1.2);
+            }
+        }
+        
+        /* Additional retro effects */
+        .phosphor-glow {
+            box-shadow: 
+                inset 0 0 20px rgba(0, 255, 0, 0.1),
+                0 0 40px rgba(0, 255, 0, 0.2);
+        }
+        
+        /* Screen flicker animation */
+        @keyframes flicker {
+            0% { opacity: 1; }
+            98% { opacity: 1; }
+            99% { opacity: 0.98; }
+            100% { opacity: 1; }
+        }
+        
+        #demo-container {
+            animation: flicker 3s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="demo-container">
+        <canvas id="main-canvas"></canvas>
+        <audio id="mod-audio" loop style="display: none;">
+            <source src="razor02.mp3" type="audio/mpeg">
+            Your browser doesn't support this awesome song
+        </audio>
+        
+        <div id="title">
+            <span style="font-size: 24px; color: #00ffff;">JS-DEMO 2025</span>
+        </div>
+        
+        <div id="vertical-scroller">
+            <div id="vertical-scroller-text">
+                CODER: m0s<br><br>
+                MUSIC: RAZOR02<br>
+                BY MAKTONE<br><br>
+                GREETINGS TO:<br><br>
+                THE SILENTS<br><br>
+                FAIRLIGHT<br><br>
+                TRIAD<br><br>
+                RAZOR 1911<br><br>
+                FUTURE CREW<br><br>
+                ORANGE<br><br>
+                CONSPIRACY<br><br>
+                TRITON<br><br>
+                DEMO CODED<br>
+                WITH JS<br><br>
+                KEEP THE<br>
+                SCENE ALIVE!<br><br>
+                *** END ***<br><br>
+            </div>
+        </div>
+    </div>
+    
+    <script src="demo.js"></script>
+</body>
+</html>
